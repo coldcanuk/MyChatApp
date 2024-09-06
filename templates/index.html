@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyChat App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/styles.css') }}">
+</head>
+<body class="light-mode">
+    <div class="container">
+        <!-- Left Sidebar for Saved Chats and Assistants -->
+        <div class="sidebar">
+            <!-- Section 1: Light/Dark Mode and Tokens Used -->
+            <div class="section">
+                <div class="slider-container">
+                    <label for="theme-toggle" class="mode-label">Light/Dark Mode</label>
+                    <label class="switch">
+                        <input type="checkbox" id="theme-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="newthread-container">
+                    <label class="mode-label">Start New Thread:</label>
+                    <button id="new-thread-btn">
+                        🧵
+                    </button>
+                </div>
+                <div id="token-usage" class="info">Tokens used: 0</div>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Section 2: Expandable Saved Assistants -->
+            <div class="section">
+                <h3 class="expandable" id="assistants-toggle">Saved Assistants &#9662;</h3>
+                <ul id="assistants-list" class="collapsible">
+                    <li>Assistant 1</li>
+                    <li>Assistant 2</li>
+                </ul>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Section 3: Expandable Saved Threads -->
+            <div class="section">
+                <h3 class="expandable" id="chats-toggle">Saved Threads &#9662;</h3>
+                <ul id="threads-list" class="collapsible">
+                    <li>Thread 1</li>
+                    <li>Thread 2</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Chat Section -->
+        <div class="chat-section">
+            <div id="chat-box" class="chat-box"></div>
+            <div class="input-container">
+                <textarea id="message-input" rows="1" placeholder="Type your message here..."></textarea>
+                <button id="send-btn">🧠</button>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+
+</body>
+</html>

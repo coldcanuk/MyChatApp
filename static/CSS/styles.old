@@ -1,0 +1,252 @@
+/* General layout for container */
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar for saved chats and assistants */
+.sidebar {
+    width: 20%;
+    background-color: var(--sidebar-background);
+    padding: 20px;
+    color: var(--text-color);
+    border-right: 1px solid var(--border-color);
+}
+
+/* Sections inside the sidebar */
+.section {
+    padding-bottom: 15px;
+}
+
+/* Divider between sections */
+.divider {
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 15px;
+}
+
+/* Sidebar Headers */
+.sidebar h3 {
+    margin-top: 0;
+}
+
+/* Sidebar Font Sizes */
+.info, .mode-label {
+    font-size: 0.9rem;
+}
+
+/* Expandable Saved Assistants and Chats */
+.expandable {
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Collapsible Menu */
+.collapsible {
+    display: block;
+}
+
+.collapsible.collapsed {
+    display: none;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.sidebar ul li {
+    padding: 5px 0;
+    cursor: pointer;
+}
+
+.sidebar ul li:hover {
+    background-color: var(--hover-background);
+}
+
+/* Main chat section */
+.chat-section {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+/* General Chat Box Styling */
+.chat-box {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-bottom: 20px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: calc(100vh - 150px);
+    max-height: calc(100vh - 150px);
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-color) var(--background-color);
+    overflow-wrap: break-word;
+}
+
+/* Left-aligned for Luna */
+.left-message {
+    background-color: var(--luna-background);
+    color: var(--text-color);
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    width: fit-content;
+    max-width: 60%;
+    align-self: flex-start;
+    clear: both;
+    word-wrap: break-word;
+}
+
+/* Right-aligned for user */
+.right-message {
+    background-color: var(--user-background);
+    color: var(--text-color);
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    width: fit-content;
+    max-width: 60%;
+    align-self: flex-end;
+    clear: both;
+    word-wrap: break-word;
+}
+
+/* Scrollbar styling */
+.chat-box::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-box::-webkit-scrollbar-track {
+    background: var(--background-color);
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+    background-color: var(--border-color);
+    border-radius: 10px;
+}
+
+/* Input box and button styling */
+.input-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-top: 10px;
+    max-width: 96%;
+}
+
+#message-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    width: 100%;
+    min-height: 40px;
+    max-height: 100px;
+    resize: none;
+    padding-right: 40px;
+    background: var(--user-input-background);
+    color: var(--user-input-text-color);
+}
+
+#send-btn {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 0;
+}
+
+#send-btn:hover {
+    transform: scale(1.2);
+}
+
+/* Slider styling for Light/Dark Mode */
+.slider-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 25px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 2.5px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #6200ea;
+}
+
+input:checked + .slider:before {
+    transform: translateX(25px);
+}
+
+/* Token usage styling */
+#token-usage {
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+/* Light and dark mode styling */
+.light-mode {
+    --background-color: #f0f0f0;
+    --text-color: #000;
+    --border-color: #ccc;
+    --luna-background: #e0e0e0;
+    --user-background: #007bff;
+    --sidebar-background: #fff;
+    --hover-background: #ddd;
+    --user-input-background: #FFFFFF;
+    --user-input-text-color: #000000;
+}
+
+.dark-mode {
+    --background-color: #1e1e1e;
+    --text-color: #fff;
+    --border-color: #444;
+    --luna-background: #2c2c2c;
+    --user-background: #6200ea;
+    --sidebar-background: #2a2a2a;
+    --hover-background: #444;
+    --user-input-background: #493636;
+    --user-input-text-color: #FFFFFF;
+}

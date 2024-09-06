@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyChat App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/styles.css') }}">
+</head>
+<body class="light-mode">
+    <div class="container">
+        <!-- Left Sidebar for Saved Chats and Assistants -->
+        <div class="sidebar">
+            <!-- Section 1: Light/Dark Mode and Tokens Used -->
+            <div class="section">
+                <div class="slider-container">
+                    <label for="theme-toggle" class="mode-label">Light/Dark Mode</label>
+                    <label class="switch">
+                        <input type="checkbox" id="theme-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div id="token-usage" class="info">Tokens used: 0</div>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Section 2: Expandable Saved Assistants -->
+            <div class="section">
+                <h3 class="expandable" id="assistants-toggle">Saved Assistants &#9662;</h3>
+                <ul id="assistants-list" class="collapsible">
+                    <li>Assistant 1</li>
+                    <li>Assistant 2</li>
+                </ul>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Section 3: Expandable Saved Chats -->
+            <div class="section">
+                <h3 class="expandable" id="chats-toggle">Saved Chats &#9662;</h3>
+                <ul id="chats-list" class="collapsible">
+                    <li>Chat 1</li>
+                    <li>Chat 2</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Chat Section -->
+        <div class="chat-section">
+            <div id="chat-box" class="chat-box"></div>
+            <div class="input-container">
+                <textarea id="message-input" rows="1" placeholder="Type your message here..."></textarea>
+                <button id="send-btn">🧠</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('send-btn').addEventListener('click', function () {
+            const message = document.getElementById('message-input').value;
+            if (message) {
+                sendMessage(message);
+            }
+        });
+
+        document.getElementById('message-input').addEventListener('keypress', function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                const message = document.getElementById('message-input').value;
+                if (message) {
+                    sendMessage(message);
+                }
+            }
+        });
+
+        function sendMessage(message) {
+            fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: message })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    addMessageToChat(message, 'right');
+                    addMessageToChat(data.response, 'left');
+                    document.getElementById('token-usage').innerText = data.tokens_used;
+                    document.getElementById('message-input').value = '';
+                }
+            });
+        }
+
+        function addMessageToChat(message, align) {
+            const chatBox = document.getElementById('chat-box');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${align}`;
+            messageDiv.innerText = message;
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        document.getElementById('theme-toggle').addEventListener('change', function () {
+            if (this.checked) {
+                document.body.classList.replace('light-mode', 'dark-mode');
+            } else {
+                document.body.classList.replace('dark-mode', 'light-mode');
+            }
+        });
+
+        // Expandable Assistants
+        const assistantsToggle = document.getElementById('assistants-toggle');
+        const assistantsList = document.getElementById('assistants-list');
+        assistantsToggle.addEventListener('click', function () {
+            assistantsList.classList.toggle('collapsed');
+            assistantsToggle.innerHTML = assistantsList.classList.contains('collapsed') ?
+                'Saved Assistants &#9656;' : 'Saved Assistants &#9662;';
+        });
+
+        // Expandable Chats
+        const chatsToggle = document.getElementById('chats-toggle');
+        const chatsList = document.getElementById('chats-list');
+        chatsToggle.addEventListener('click', function () {
+            chatsList.classList.toggle('collapsed');
+            chatsToggle.innerHTML = chatsList.classList.contains('collapsed') ?
+                'Saved Chats &#9656;' : 'Saved Chats &#9662;';
+        });
+
+        // Textarea auto-growth
+        const textarea = document.getElementById('message-input');
+        textarea.addEventListener('input', function () {
+            this.style.height = 'auto';
+            this.style.height = `${Math.min(this.scrollHeight, 100)}px`;
+        });
+    </script>
+</body>
+</html>
