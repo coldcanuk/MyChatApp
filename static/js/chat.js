@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
     loadSavedThreads();  // Load threads on page load
 });
 
+// Function to Load Saved Threads
 function loadSavedThreads() {
     fetch('/get_threads', {
         method: 'GET',
@@ -44,8 +45,6 @@ function loadSavedThreads() {
             return;
         }
 
-        console.log("Retrieved threads:", data.threads); // Debugging log
-
         // Populate saved threads list
         data.threads.forEach((threadId, index) => {
             const threadItem = document.createElement('li');
@@ -62,6 +61,8 @@ function loadSavedThreads() {
 }
 
 
+
+// Function to send the message and handle thread ID
 function sendMessage(message) {
     const requestData = {
         message: message,
@@ -97,6 +98,7 @@ function sendMessage(message) {
     });
 }
 
+
 // Function to update the saved threads list
 function updateSavedThreads(threadId) {
     const threadsList = document.getElementById('threads-list');
@@ -110,6 +112,7 @@ function updateSavedThreads(threadId) {
     }
 }
 
+// Function to load an existing thread and populate messages
 function loadThread(threadId) {
     console.log(`Loading thread: ${threadId}`);
     fetch(`/load_thread/${threadId}`, {
@@ -132,6 +135,7 @@ function loadThread(threadId) {
         console.error('Error loading thread:', err);
     });
 }
+
 
 function addMessageToChat(message, align) {
     const chatBox = document.getElementById('chat-box');

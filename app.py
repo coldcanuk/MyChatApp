@@ -1,12 +1,13 @@
 import os
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, session
+from openai import OpenAIError, BadRequestError
 import openai
 import time
 import datetime
-import uuid
 import chromadb
 import traceback
 import json
+
 
 app = Flask(__name__)
 
@@ -19,6 +20,9 @@ if not openai.api_key:
 assistant_id = os.getenv("ASSISTANT_ID")
 if not assistant_id:
     print("Assistant ID not loaded. Check your environment variable setup.")
+
+# Load Session Mgmt key from environment variable
+app.secret_key = os.getenv('MCA_SESSION')
 
 # Polling interval (seconds) to wait between run status checks
 POLL_INTERVAL = 2
@@ -33,10 +37,54 @@ def get_current_timestamp():
     return datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
 
 
+# Helper function to process the messages
+def process_messages(messages, user_input=None):
+    assistant_message = ""
+    conversation = []
+    current_time = get_current_timestamp()  # Capture timestamp
+
+    # Add user input first if available
+    if user_input:
+        conversation.append({
+            "role": "user",
+            "content": user_input,
+            "time_state": "Sent",
+            "time_value": current_time
+        })
+
+    for message in messages:
+        message_text = message['content'] if 'content' in message else ''
+        if message['role'] == "assistant":
+            assistant_message += message_text
+        conversation.append({
+            "role": message['role'],
+            "content": message_text,
+            "time_state": "Sent" if message['role'] == "user" else "Received",
+            "time_value": current_time  # Precise timestamp
+        })
+    return assistant_message, conversation
+
+
+# Helper function to retrieve token usage
+def get_token_usage(completed_run):
+    usage = completed_run.get('usage', {})
+    total_tokens = usage.get('total_tokens', 'unknown')
+    return f"Tokens used: {total_tokens}"
+
+
+# Helper function to build response
+def build_response(assistant_message, token_usage, thread_id):
+    return jsonify({
+        'response': assistant_message,
+        'tokens_used': token_usage,
+        'thread_id': thread_id
+    }), 200
+
+
 # Function to create a new thread and run for each user interaction
 def create_thread_and_run(user_input):
     try:
-        print("Attempting to create a new thread and run...")  # Debugging log
+        print("Creating a new thread and run...")  # Debugging log
         run = openai.beta.threads.create_and_run(
             assistant_id=assistant_id,
             thread={
@@ -48,8 +96,48 @@ def create_thread_and_run(user_input):
         print("Run object created:", run)
         return run
 
+    except OpenAIError as e:
+        print(f"An OpenAI error occurred: {str(e)}")
+        return None
+
+
+# Function to create a new thread and store it in the session and database
+def create_thread():
+    try:
+        new_thread = openai.beta.threads.create()
+        thread_id = new_thread['id']  # Ensure we get the ID from the response
+        print(f"New thread created with ID: {thread_id}")
+
+        # Save the thread in session and database
+        session['thread_id'] = thread_id
+        save_thread(thread_id, [])
+
+        return new_thread
     except Exception as e:
-        print(f"Error creating thread and run: {str(e)}")
+        print(f"Error creating new thread: {str(e)}")
+        return None
+
+
+# Creating a run in an existing thread
+def create_run_in_existing_thread(thread_id, user_input):
+    try:
+        run = openai.beta.threads.runs.create(
+            thread_id=thread_id,
+            assistant_id=assistant_id
+        )
+        print(f"Run created in thread {thread_id}")
+        return run
+    except BadRequestError as e:  # Handling thread not found error
+        error_message = str(e)
+        if "No thread found" in error_message:
+            print(f"Thread {thread_id} not found.")
+            # Instead of automatically creating a new thread, notify the user
+            return {"error": "Thread not found. The selected thread no longer exists."}
+        else:
+            print(f"Error creating run in thread {thread_id}: {error_message}")
+            return None
+    except OpenAIError as e:  # Catching other OpenAI API-related errors
+        print(f"An OpenAI error occurred: {str(e)}")
         return None
 
 
@@ -58,10 +146,10 @@ def wait_for_run_completion(run_id, thread_id):
     WHILE_INTERVAL = 0
     while True:
         try:
-            # Debugging log
             print(f"Polling for run completion... (attempt {WHILE_INTERVAL})")
             run_status = openai.beta.threads.runs.retrieve(
-                thread_id=thread_id, run_id=run_id)
+                thread_id=thread_id, run_id=run_id
+            )
             print(f"Current run status: {run_status.status}")
 
             if run_status.status == "completed":
@@ -79,7 +167,7 @@ def wait_for_run_completion(run_id, thread_id):
 # Function to list all messages in the thread after the run completes
 def list_thread_messages(thread_id):
     try:
-        print("Attempting to list messages in the thread...")  # Debugging log
+        print("Listing messages in the thread...")  # Debugging log
         messages_response = openai.beta.threads.messages.list(
             thread_id=thread_id)
         print("Messages response:", messages_response)
@@ -89,106 +177,16 @@ def list_thread_messages(thread_id):
         return None
 
 
-# Retrieve all saved threads
-def get_all_threads():
+# Updated save_thread to store empty thread at start
+def save_thread(thread_id, conversation):
     try:
-        result = thread_collection.get()  # Fetch all saved threads
-        # Ensure 'documents' key exists and is iterable
-        if 'documents' in result and isinstance(result['documents'], list):
-            # Extract thread IDs from the documents, which are stored as JSON strings
-            threads = []
-            for document in result['documents']:
-                thread_data = json.loads(document)
-                threads.append(thread_data.get('id'))
-            return threads
-        else:
-            print("No valid threads found in ChromaDB.")
-            return []
-    except Exception as e:
-        print(f"Error retrieving threads: {e}")
-        return []
-
-
-# Save thread after the first reply
-def save_thread_after_first_reply(thread_id, conversation):
-    try:
-        # Only save the thread if it's not already saved
-        if not get_thread(thread_id):
-            # Ensure conversation has valid messages before saving
-            if conversation and isinstance(conversation, list):
-                save_thread(thread_id, conversation)
-                print(f"Thread {thread_id} saved after first reply.")
-            else:
-                print(f"Invalid conversation data for thread {
-                      thread_id}. Not saving.")
-    except Exception as e:
-        print(f"Error saving thread after first reply: {e}")
-
-
-# Save thread with full conversation, ensuring no truncation
-def save_thread(thread_id, new_messages, is_new_thread=False):
-    try:
-        if not new_messages or not isinstance(new_messages, list):
-            print(f"Invalid or empty messages. Cannot save thread {
-                  thread_id}.")
-            return  # Don't save if messages are invalid
-
-        # Get the current timestamp with milliseconds
         current_time = get_current_timestamp()
+        updated_thread = {
+            "id": thread_id,
+            "messages": conversation,
+            "last_updated": current_time,
+        }
 
-        # Check if the thread already exists
-        existing_thread = get_thread(thread_id)
-
-        if existing_thread:
-            # Ensure existing thread has a valid structure
-            if "messages" in existing_thread and isinstance(
-                    existing_thread["messages"], list
-            ):
-                # Append new messages to the existing thread
-                existing_messages = existing_thread["messages"]
-
-                # Ensure each new message has time_state and time_value
-                for message in new_messages:
-                    if "role" in message and "content" in message:
-                        # Add time_state and time_value if missing
-                        message.setdefault(
-                            "time_state", "Sent"
-                            if message["role"] == "user" else "Received"
-                        )
-                        message.setdefault("time_value", current_time)
-                        existing_messages.append(message)
-
-                updated_thread = {
-                    "id": thread_id,
-                    "messages": existing_messages,  # Append new messages
-                    # Keep original creation time
-                    "created": existing_thread["created"],
-                    # Update timestamp for the last interaction
-                    "last_updated": current_time
-                }
-            else:
-                print(f"Invalid existing thread structure for thread {
-                      thread_id}.")
-                return
-        else:
-            # Ensure each new message has time_state and time_value
-            for message in new_messages:
-                if "role" in message and "content" in message:
-                    message.setdefault(
-                        "time_state", "Sent"
-                        if message["role"] == "user" else "Received"
-                    )
-                    message.setdefault("time_value", current_time)
-
-            # Create a new thread with the initial messages
-            updated_thread = {
-                "id": thread_id,
-                "messages": new_messages,
-                "created": current_time,  # Set the creation time on first save
-                "last_updated": current_time
-            }
-
-        # Save or update the thread in ChromaDB
         thread_collection.add(
             ids=[thread_id],
             documents=[json.dumps(updated_thread)]
@@ -198,33 +196,21 @@ def save_thread(thread_id, new_messages, is_new_thread=False):
         print(f"Error saving thread: {e}")
 
 
-# Retrieve thread by ID
-def get_thread(thread_id):
-    try:
-        print(f"Thread collection data: {
-              json.dumps(thread_collection.get(), indent=4)}")
-        result = thread_collection.get()  # Fetch all saved threads
-
-        # Assuming 'documents' contains the serialized thread data
-        for thread in result['documents']:
-            thread_data = json.loads(thread)  # Deserialize the document
-            if thread_data['id'] == thread_id:
-                return thread_data  # Return the full thread with messages and timestamps
-        return None  # Return None if the thread is not found
-    except Exception as e:
-        print(f"Error retrieving thread: {e}")
-        return None
-
-
-# Delete a thread
-def delete_thread(thread_id):
-    thread_collection.delete(ids=[thread_id])
-    print(f"Thread {thread_id} deleted.")
-
-
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+# Loading existing threads from the collection
+@app.route('/load_thread/<thread_id>', methods=['GET'])
+def load_thread(thread_id):
+    try:
+        result = thread_collection.get(ids=[thread_id])
+        thread_data = result['documents'][0]
+        return jsonify(json.loads(thread_data)), 200
+    except Exception as e:
+        print(f"Error loading thread: {str(e)}")
+        return jsonify({'error': 'Thread not found'}), 404
 
 
 @app.route('/chat', methods=['POST'])
@@ -233,151 +219,61 @@ def chat():
         print("Received a chat request...")  # Debugging log
         data = request.json
         user_input = data.get('message')
-        print(f"User input: {user_input}")
 
-        if not validate_input(user_input):
-            return jsonify({'error': 'No message provided'}), 400
+        # Check if there's a thread ID in the session
+        thread_id = session.get('thread_id')
 
-        # Check if it's a new thread or a continuation
-        # Get thread_id if continuing, else create a new one
-        thread_id = data.get('thread_id') or str(uuid.uuid4())
+        if not thread_id:  # No thread, create a new one
+            print("No thread found. Creating a new one.")
+            thread = create_thread()
+            if thread:
+                thread_id = thread.id
+                session['thread_id'] = thread_id
+                print(f"New thread ID: {thread_id}")
+        else:
+            print(f"Using existing thread ID: {thread_id}")
 
-        run = create_and_run_thread(user_input)
+        # Create a run within the thread
+        run = create_run_in_existing_thread(thread_id, user_input)
         if not run:
             return jsonify({'error': 'Failed to interact with assistant'}), 500
 
-        completed_run = wait_for_completion(run)
+        # Wait for the run to complete
+        completed_run = wait_for_run_completion(run.id, thread_id)
         if not completed_run:
             return jsonify({'error': 'Run did not complete successfully'}), 500
 
-        messages = list_thread_messages(completed_run.thread_id)
+        messages = list_thread_messages(thread_id)
         if not messages:
             return jsonify({'error': 'No messages found in thread'}), 500
 
-        assistant_message, conversation = process_messages(messages)
+        # Add user input while processing messages
+        assistant_message, conversation = process_messages(
+            messages, user_input=user_input)
 
-        # Save thread after first Luna response
-        save_thread_after_first_reply(thread_id, conversation)
-
-        print("Assistant response:", assistant_message)
+        # Save thread with updated messages
+        save_thread(thread_id, conversation)
 
         token_usage = get_token_usage(completed_run)
 
         return build_response(assistant_message, token_usage, thread_id)
 
     except Exception as e:
-        print(f"Error occurred on line {traceback.format_exc()}")
+        print(f"Error occurred: {traceback.format_exc()}")
         return jsonify({'error': str(e)}), 500
 
 
 @app.route('/get_threads', methods=['GET'])
 def get_threads():
     """ API to get all saved threads """
-    threads = get_all_threads()
-    return jsonify({'threads': threads}), 200
-
-
-def validate_input(user_input):
-    """ Validate if the user input is present """
-    return bool(user_input)
-
-
-def create_and_run_thread(user_input):
-    """ Create a thread and start the run """
     try:
-        return create_thread_and_run(user_input)
+        result = thread_collection.get()  # Fetch all saved threads
+        threads = [json.loads(thread).get('id')
+                   for thread in result['documents']]
+        return jsonify({'threads': threads}), 200
     except Exception as e:
-        print(f"Failed to create thread: {e}")
-        return None
-
-
-def wait_for_completion(run):
-    """ Poll for the run's completion """
-    try:
-        return wait_for_run_completion(run.id, run.thread_id)
-    except Exception as e:
-        print(f"Failed to complete run: {e}")
-        return None
-
-
-# Update the process_messages function to include all conversation elements
-def process_messages(messages):
-    conversation = []
-    assistant_message = ""
-    current_time = get_current_timestamp()  # Capture the exact time
-
-    for message in messages:
-        message_text = extract_message_text(message)
-        if message_text.strip():
-            time_state = "Sent" if message.role == "user" else "Received"
-            conversation.append({
-                "role": message.role,
-                "content": message_text,
-                "time_state": time_state,
-                "time_value": current_time  # Use precise timestamp
-            })
-        if message.role == "assistant":
-            assistant_message += message_text
-
-    # Return both the full conversation and the assistant's message
-    return assistant_message, conversation
-
-
-def extract_message_text(message):
-    """ Extract text from message content blocks """
-    message_text = ""
-    i = 0  # Block counter
-    for block in message.content:
-        i += 1
-        print(f"Row {i}: Processing block: {block}")
-        message_text += process_block(block)
-    return message_text
-
-
-def process_block(block):
-    """ Safely process a block to extract text """
-    try:
-        if hasattr(block, 'type') and block.type == "text":
-            if hasattr(block, 'text') and hasattr(block.text, 'value'):
-                text_value = block.text.value
-                if isinstance(text_value, str):
-                    return text_value
-                else:
-                    print(
-                        f"Warning: Block's text value is not a string."
-                        f"Block details: {block}"
-                    )
-            else:
-                print(
-                    f"Warning: Block missing 'text' or 'value' attribute."
-                    f"Block details: {block}"
-                )
-        else:
-            print(
-                f"Skipping non-text block or invalid block type. Block details: {block}")
-        return ""
-
-    except Exception:
-        print(f"Error occurred on line {traceback.format_exc()}")
-        return ""
-
-
-def get_token_usage(completed_run):
-    """ Retrieve token usage information """
-    token_usage = completed_run.usage
-    return (
-        f"Tokens used: {token_usage.total_tokens}"
-        if token_usage else "Tokens used: unknown"
-    )
-
-
-def build_response(assistant_message, token_usage, thread_id):
-    """ Build the final response to return to the client """
-    return jsonify({
-        'response': assistant_message,
-        'tokens_used': token_usage,
-        'thread_id': thread_id
-    }), 200
+        print(f"Error retrieving threads: {str(e)}")
+        return jsonify({'threads': []}), 500
 
 
 if __name__ == '__main__':

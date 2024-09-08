@@ -802,3 +802,243 @@
 [32mINFO[0m:     [08-09-2024 12:22:27] 127.0.0.1:35850 - "GET /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
 [32mINFO[0m:     [08-09-2024 12:22:27] 127.0.0.1:35850 - "GET /api/v1/collections/mychat_threads?tenant=default_tenant&database=default_database HTTP/1.1" 200
 [32mINFO[0m:     [08-09-2024 12:22:27] 127.0.0.1:35850 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:30:04] 127.0.0.1:55900 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:30:04] 127.0.0.1:55900 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 12:30:04] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 12:30:04] 127.0.0.1:55916 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:36:08] Shutting down
+[32mINFO[0m:     [08-09-2024 12:36:08] Waiting for application shutdown.
+[36mDEBUG[0m:    [08-09-2024 12:36:08] Stopping component System
+[36mDEBUG[0m:    [08-09-2024 12:36:08] Stopping component SegmentAPI
+[36mDEBUG[0m:    [08-09-2024 12:36:08] Stopping component PersistentLocalHnswSegment
+[36mDEBUG[0m:    [08-09-2024 12:36:08] Stopping component LocalSegmentManager
+[36mDEBUG[0m:    [08-09-2024 12:36:08] Stopping component Posthog
+[36mDEBUG[0m:    [08-09-2024 12:36:08] Stopping component QuotaEnforcer
+[36mDEBUG[0m:    [08-09-2024 12:36:08] Stopping component SqliteDB
+[36mDEBUG[0m:    [08-09-2024 12:36:08] Stopping component OpenTelemetryClient
+[32mINFO[0m:     [08-09-2024 12:36:08] Application shutdown complete.
+[32mINFO[0m:     [08-09-2024 12:36:08] Finished server process [[36m187965[0m]
+[32mINFO[0m:     [08-09-2024 12:37:04] Set chroma_server_nofile to 65535
+[32mINFO[0m:     [08-09-2024 12:37:04] Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+[36mDEBUG[0m:    [08-09-2024 12:37:04] Starting component System
+[36mDEBUG[0m:    [08-09-2024 12:37:04] Starting component OpenTelemetryClient
+[36mDEBUG[0m:    [08-09-2024 12:37:04] Starting component SqliteDB
+[36mDEBUG[0m:    [08-09-2024 12:37:04] Starting component QuotaEnforcer
+[36mDEBUG[0m:    [08-09-2024 12:37:04] Starting component Posthog
+[36mDEBUG[0m:    [08-09-2024 12:37:04] Starting component LocalSegmentManager
+[36mDEBUG[0m:    [08-09-2024 12:37:04] Starting component SegmentAPI
+[32mINFO[0m:     [08-09-2024 12:37:04] Started server process [[36m190903[0m]
+[32mINFO[0m:     [08-09-2024 12:37:04] Waiting for application startup.
+[32mINFO[0m:     [08-09-2024 12:37:04] Application startup complete.
+[32mINFO[0m:     [08-09-2024 12:37:04] Uvicorn running on [1mhttp://localhost:8000[0m (Press CTRL+C to quit)
+[32mINFO[0m:     [08-09-2024 12:37:07] 127.0.0.1:52692 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:37:07] 127.0.0.1:52692 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 12:37:07] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 12:37:07] 127.0.0.1:52706 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:37:08] 127.0.0.1:52720 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:37:08] 127.0.0.1:52720 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 12:37:08] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 12:37:08] 127.0.0.1:52736 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:37:16] 127.0.0.1:52738 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:37:16] 127.0.0.1:52738 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:37:16] 127.0.0.1:52750 - "GET /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:37:16] 127.0.0.1:52750 - "GET /api/v1/collections/mychat_threads?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:37:16] 127.0.0.1:52750 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:37:26] 127.0.0.1:36548 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:37:26] 127.0.0.1:36548 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:37:26] 127.0.0.1:36554 - "GET /api/v1/collections/mychat_threads?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:37:26] 127.0.0.1:36554 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 12:37:26] Starting component PersistentLocalHnswSegment
+[32mINFO[0m:     [08-09-2024 12:37:26] 127.0.0.1:36554 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/delete HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:38:07] 127.0.0.1:47592 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:38:07] 127.0.0.1:47592 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 12:38:07] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 12:38:07] 127.0.0.1:47608 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:40:28] 127.0.0.1:48116 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:40:28] 127.0.0.1:48116 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 12:40:28] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 12:40:28] 127.0.0.1:48122 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:40:38] 127.0.0.1:60360 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:40:38] 127.0.0.1:60360 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 12:40:38] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 12:40:38] 127.0.0.1:60362 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:42:37] 127.0.0.1:48774 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:42:37] 127.0.0.1:48774 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 12:42:37] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 12:42:37] 127.0.0.1:48786 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:42:38] 127.0.0.1:48802 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:42:38] 127.0.0.1:48802 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 12:42:38] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 12:42:38] 127.0.0.1:48814 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:42:41] 127.0.0.1:48814 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:42:47] 127.0.0.1:48820 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:42:47] 127.0.0.1:48820 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:42:47] 127.0.0.1:48828 - "GET /api/v1/collections/mychat_threads?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:42:47] 127.0.0.1:48828 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:45:47] 127.0.0.1:58308 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:45:47] 127.0.0.1:58308 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 12:45:47] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 12:45:47] 127.0.0.1:58324 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:46:02] 127.0.0.1:35800 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:46:02] 127.0.0.1:35800 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 12:46:02] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 12:46:02] 127.0.0.1:35814 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:46:03] 127.0.0.1:35828 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:46:03] 127.0.0.1:35828 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 12:46:03] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 12:46:03] 127.0.0.1:35840 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:46:06] 127.0.0.1:35850 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:46:06] 127.0.0.1:35850 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:46:06] 127.0.0.1:35852 - "GET /api/v1/collections/mychat_threads?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:46:06] 127.0.0.1:35852 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:46:10] 127.0.0.1:50462 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:47:05] 127.0.0.1:38824 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:47:05] 127.0.0.1:38824 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 12:47:05] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 12:47:05] 127.0.0.1:38828 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:47:05] 127.0.0.1:38830 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:47:05] 127.0.0.1:38830 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 12:47:05] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 12:47:05] 127.0.0.1:38832 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:47:10] 127.0.0.1:38832 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:49:58] 127.0.0.1:43582 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:49:58] 127.0.0.1:43582 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 12:49:58] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 12:49:58] 127.0.0.1:43588 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:54:01] 127.0.0.1:50372 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:54:01] 127.0.0.1:50372 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 12:54:01] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 12:54:01] 127.0.0.1:50376 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:54:25] 127.0.0.1:33386 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:20:26] 127.0.0.1:51772 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:20:26] 127.0.0.1:51772 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 13:20:26] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 13:20:26] 127.0.0.1:51776 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:21:37] 127.0.0.1:37690 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:21:37] 127.0.0.1:37690 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 13:21:37] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 13:21:37] 127.0.0.1:37694 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:25:10] 127.0.0.1:45750 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:25:10] 127.0.0.1:45750 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 13:25:10] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 13:25:10] 127.0.0.1:45754 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:25:31] 127.0.0.1:38564 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:25:31] 127.0.0.1:38564 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 13:25:31] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 13:25:31] 127.0.0.1:38574 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:25:31] 127.0.0.1:38584 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:25:31] 127.0.0.1:38584 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 13:25:31] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 13:25:31] 127.0.0.1:38600 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:25:37] 127.0.0.1:38612 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:25:43] 127.0.0.1:34118 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:25:43] 127.0.0.1:34118 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:25:43] 127.0.0.1:34130 - "GET /api/v1/collections/mychat_threads?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:25:44] 127.0.0.1:34130 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:31:46] 127.0.0.1:36836 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:31:46] 127.0.0.1:36836 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 13:31:46] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 13:31:46] 127.0.0.1:36840 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:32:17] 127.0.0.1:43196 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:32:17] 127.0.0.1:43196 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 13:32:17] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 13:32:17] 127.0.0.1:43204 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:32:26] 127.0.0.1:46002 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:32:26] 127.0.0.1:46002 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 13:32:26] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 13:32:26] 127.0.0.1:46006 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:32:49] 127.0.0.1:49680 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:32:49] 127.0.0.1:49680 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 13:32:49] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 13:32:49] 127.0.0.1:49696 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:33:21] 127.0.0.1:57760 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:33:21] 127.0.0.1:57760 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 13:33:21] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 13:33:21] 127.0.0.1:57772 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:33:30] 127.0.0.1:51332 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:33:30] 127.0.0.1:51332 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 13:33:30] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 13:33:30] 127.0.0.1:51334 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:34:27] 127.0.0.1:34980 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:34:27] 127.0.0.1:34980 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:34:27] 127.0.0.1:34988 - "GET /api/v1/collections/mychat_threads?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:34:27] 127.0.0.1:34988 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:34:35] 127.0.0.1:47770 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:34:35] 127.0.0.1:47770 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 13:34:35] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 13:34:35] 127.0.0.1:47784 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:34:36] 127.0.0.1:47792 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:34:36] 127.0.0.1:47792 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 13:34:36] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 13:34:36] 127.0.0.1:47796 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:39:22] 127.0.0.1:53966 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:39:22] 127.0.0.1:53966 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 13:39:22] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 13:39:22] 127.0.0.1:53976 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:39:22] 127.0.0.1:53984 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:39:22] 127.0.0.1:53984 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 13:39:22] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 13:39:22] 127.0.0.1:53994 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:39:26] 127.0.0.1:53994 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:41:39] 127.0.0.1:48790 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:41:39] 127.0.0.1:48790 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 13:41:39] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 13:41:39] 127.0.0.1:48796 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:41:46] 127.0.0.1:48808 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:41:46] 127.0.0.1:48808 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 13:41:46] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 13:41:46] 127.0.0.1:48822 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:41:47] 127.0.0.1:48834 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:41:47] 127.0.0.1:48834 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 13:41:47] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 13:41:47] 127.0.0.1:48836 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:41:49] 127.0.0.1:48874 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:41:49] 127.0.0.1:48874 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:41:49] 127.0.0.1:48886 - "GET /api/v1/collections/mychat_threads?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:41:49] 127.0.0.1:48886 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:41:53] 127.0.0.1:48900 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:42:38] 127.0.0.1:50160 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:42:38] 127.0.0.1:50160 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 13:42:38] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 13:42:38] 127.0.0.1:50176 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:43:45] 127.0.0.1:60798 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:43:45] 127.0.0.1:60798 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 13:43:45] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 13:43:45] 127.0.0.1:60802 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:44:22] 127.0.0.1:44596 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:44:22] 127.0.0.1:44596 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 13:44:22] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 13:44:22] 127.0.0.1:44610 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:44:28] 127.0.0.1:52962 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:44:28] 127.0.0.1:52962 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 13:44:28] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 13:44:28] 127.0.0.1:52978 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:44:29] 127.0.0.1:52980 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:44:29] 127.0.0.1:52980 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 13:44:29] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 13:44:29] 127.0.0.1:52984 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:44:31] 127.0.0.1:52984 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:45:50] 127.0.0.1:45292 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:45:50] 127.0.0.1:45292 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 13:45:50] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 13:45:50] 127.0.0.1:45304 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:45:54] 127.0.0.1:45304 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:46:34] 127.0.0.1:55250 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:46:34] 127.0.0.1:55250 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 13:46:34] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 13:46:34] 127.0.0.1:55256 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:46:39] 127.0.0.1:58070 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:56:47] 127.0.0.1:50714 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:56:47] 127.0.0.1:50714 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 13:56:47] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 13:56:47] 127.0.0.1:50724 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:56:48] 127.0.0.1:50730 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:56:48] 127.0.0.1:50730 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 13:56:48] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 13:56:48] 127.0.0.1:50736 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 13:56:52] 127.0.0.1:50736 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 14:01:27] 127.0.0.1:39270 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 14:01:27] 127.0.0.1:39270 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 14:01:27] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 14:01:27] 127.0.0.1:39282 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 14:01:31] 127.0.0.1:39282 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
