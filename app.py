@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, request, jsonify
 import openai
 import time
+import datetime
 import uuid
 import chromadb
 import traceback
@@ -25,6 +26,11 @@ POLL_INTERVAL = 2
 # Connect to a running ChromaDB server
 client = chromadb.HttpClient(host='localhost', port=8000)
 thread_collection = client.get_or_create_collection("mychat_threads")
+
+
+# Function to get the current timestamp with milliseconds
+def get_current_timestamp():
+    return datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
 
 
 # Function to create a new thread and run for each user interaction
@@ -98,49 +104,82 @@ def get_all_threads():
 def save_thread_after_first_reply(thread_id, conversation):
     try:
         # Only save the thread if it's not already saved
-        # (e.g., based on thread_id existence check)
         if not get_thread(thread_id):
-            save_thread(thread_id, conversation)
-            print(f"Thread {thread_id} saved after first reply.")
+            # Ensure conversation has valid messages before saving
+            if conversation and isinstance(conversation, list):
+                save_thread(thread_id, conversation)
+                print(f"Thread {thread_id} saved after first reply.")
+            else:
+                print(f"Invalid conversation data for thread {
+                      thread_id}. Not saving.")
     except Exception as e:
         print(f"Error saving thread after first reply: {e}")
 
 
-# Save thread after Luna's first reply
-def save_thread(thread_id, messages):
-    valid_messages = []
-
-    for message in messages:
-        if isinstance(message['content'], str):
-            valid_messages.append(message)
-        else:
-            message_content = extract_message_text(message)
-            if message_content:
-                valid_messages.append(
-                    {
-                        "role": message['role'], "content": message_content
-                    }
-                )
-
+# Save thread with milliseconds
+def save_thread(thread_id, new_messages, is_new_thread=False):
     try:
-        # Debugging: Print what you're about to save
-        print(f"Saving thread with data: {
-            json.dumps(
-                {
-                    'id': thread_id,
-                    'messages': valid_messages,
-                    'last_updated': str(time.time())
-                }, indent=4
-            )}"
-        )
-        # Convert the valid_messages list into a JSON string before saving
+        if not new_messages or not isinstance(new_messages, list):
+            print(f"Invalid or empty messages. Cannot save thread {
+                  thread_id}.")
+            return  # Don't save if messages are invalid
+
+        # Get the current timestamp with milliseconds
+        current_time = get_current_timestamp()
+
+        # Check if the thread already exists
+        existing_thread = get_thread(thread_id)
+
+        if existing_thread:
+            # Ensure existing thread has a valid structure
+            if "messages" in existing_thread and isinstance(
+                existing_thread["messages"], list
+            ):
+                # Append new messages to the existing thread
+                existing_messages = existing_thread["messages"]
+                # Ensure each new message has time_state and time_value
+                for message in new_messages:
+                    if "role" in message and "content" in message:
+                        # Add time_state and time_value if missing
+                        message.setdefault(
+                            "time_state", "Sent"
+                            if message["role"] == "user" else "Received"
+                        )
+                        message.setdefault("time_value", current_time)
+                        existing_messages.append(message)
+                updated_thread = {
+                    "id": thread_id,
+                    "messages": existing_messages,
+                    # Keep original creation time
+                    "created": existing_thread["created"],
+                    # Update timestamp for the last interaction
+                    "last_updated": current_time
+                }
+            else:
+                print(f"Invalid existing thread structure for thread {
+                      thread_id}.")
+                return
+        else:
+            # Ensure each new message has time_state and time_value
+            for message in new_messages:
+                if "role" in message and "content" in message:
+                    message.setdefault(
+                        "time_state", "Sent" if message["role"] == "user" else "Received"
+                    )
+                    message.setdefault("time_value", current_time)
+
+            # Create a new thread with the initial messages
+            updated_thread = {
+                "id": thread_id,
+                "messages": new_messages,
+                "created": current_time,  # Set the creation time on first save
+                "last_updated": current_time
+            }
+
+        # Save or update the thread in ChromaDB
         thread_collection.add(
             ids=[thread_id],
-            documents=[json.dumps({
-                "id": thread_id,
-                "messages": valid_messages,
-                "last_updated": str(time.time())
-            })]
+            documents=[json.dumps(updated_thread)]
         )
         print(f"Thread {thread_id} saved.")
     except Exception as e:
@@ -153,15 +192,16 @@ def get_thread(thread_id):
         print(f"Thread collection data: {
               json.dumps(thread_collection.get(), indent=4)}")
         result = thread_collection.get()  # Fetch all saved threads
-        # ChromaDB returns documents in a specific format, adjust accordingly:
-        # assuming result['documents'] is the correct field
+
+        # Assuming 'documents' contains the serialized thread data
         for thread in result['documents']:
-            if thread['id'] == thread_id:
-                return thread["messages"]
-        return []  # Return an empty list if the thread is not found
+            thread_data = json.loads(thread)  # Deserialize the document
+            if thread_data['id'] == thread_id:
+                return thread_data  # Return the full thread with messages and timestamps
+        return None  # Return None if the thread is not found
     except Exception as e:
         print(f"Error retrieving thread: {e}")
-        return []
+        return None
 
 
 # Delete a thread
@@ -248,15 +288,23 @@ def wait_for_completion(run):
         return None
 
 
+# Update the process_messages function to include milliseconds
 def process_messages(messages):
-    """ Process messages and extract the assistant's response """
     conversation = []
     assistant_message = ""
+    # Capture the time when Luna's reply is processed
+    current_time = get_current_timestamp()
+
     for message in messages:
         message_text = extract_message_text(message)
         if message_text.strip():
-            conversation.append(
-                {"role": message.role, "content": message_text})
+            time_state = "Sent" if message.role == "user" else "Received"
+            conversation.append({
+                "role": message.role,
+                "content": message_text,
+                "time_state": time_state,
+                "time_value": current_time
+            })
         if message.role == "assistant":
             assistant_message += message_text
     return assistant_message, conversation

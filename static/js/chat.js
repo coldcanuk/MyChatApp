@@ -43,20 +43,38 @@ function loadSavedThreads() {
             'Content-Type': 'application/json'
         }
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to fetch threads');
+        }
+        return response.json();
+    })
     .then(data => {
         const threadsList = document.getElementById('threads-list');
         threadsList.innerHTML = '';  // Clear placeholder threads
+
+        if (!data.threads || data.threads.length === 0) {
+            threadsList.innerText = 'No threads available';  // Display message if no threads found
+            console.log('No threads found.');
+            return;
+        }
+
+        console.log("Retrieved threads:", data.threads);  // Debugging log to check thread IDs
+
         data.threads.forEach(threadId => {
             const threadItem = document.createElement('li');
+            // Adding a simple message for now. You can adjust the format.
             threadItem.innerText = `Thread ${threadId}`;
             threadItem.addEventListener('click', () => loadThread(threadId));  // Load thread on click
             threadsList.appendChild(threadItem);
         });
     })
-    .catch(err => console.log('Error loading threads:', err));
+    .catch(err => {
+        console.error('Error loading threads:', err);
+        const threadsList = document.getElementById('threads-list');
+        threadsList.innerText = 'Error loading threads';  // Display error message in the list
+    });
 }
-
 
 function startNewThread() {
     // Clear the chat box and initiate a new thread
@@ -69,7 +87,6 @@ function startNewThread() {
 
     // Optionally, you can create a placeholder for the new thread here if needed
 }
-
 
 function sendMessage(message) {
     fetch('/chat', {
@@ -87,6 +104,10 @@ function sendMessage(message) {
             addMessageToChat(data.response, 'left');  // Add Luna's response
             document.getElementById('token-usage').innerText = data.tokens_used;
         }
+    })
+    .catch(err => {
+        console.error('Error sending message:', err);
+        alert('Error sending message. Please try again.');
     });
 }
 
@@ -99,13 +120,11 @@ function addMessageToChat(message, align) {
     chatBox.scrollTop = chatBox.scrollHeight;  // Auto-scroll to the bottom
 }
 
-
 function loadThread(threadId) {
     console.log(`Loading thread: ${threadId}`);
-    // Here you would add logic to load the saved conversation from the backend
-    // This can be fetched from ChromaDB with the thread ID and displayed in the chat box
+    // Logic to fetch and load the conversation with the given threadId
+    // You'll need to implement backend handling for this based on how you stored threads
 }
-
 
 document.getElementById('theme-toggle').addEventListener('change', function () {
     if (this.checked) {
@@ -139,3 +158,9 @@ textarea.addEventListener('input', function () {
     this.style.height = 'auto';
     this.style.height = `${Math.min(this.scrollHeight, 100)}px`;
 });
+
+// Helper function to format the timestamp (if you want to display last_updated or any time info)
+function formatTimestamp(timestamp) {
+    const date = new Date(timestamp);
+    return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+}

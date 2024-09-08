@@ -1,6 +1,7 @@
 import streamlit as st
 import chromadb
 import json
+from datetime import datetime
 
 client = chromadb.HttpClient(host='localhost', port=8000)
 
@@ -46,8 +47,32 @@ if collections:
 
         # Display all documents
         st.subheader(f"Documents in the {selected_collection} Collection")
+
         for idx, doc in enumerate(all_documents['documents']):
-            st.write(f"Document {idx + 1}: {doc}")
+            try:
+                document_data = json.loads(doc)
+
+                st.write(
+                    f"Document {idx + 1}: Thread ID: {document_data['id']}")
+
+                # Convert string timestamps to datetime objects with milliseconds
+                created_time = datetime.strptime(
+                    document_data['created'], "%Y-%m-%d %H:%M:%S.%f")
+                last_updated_time = datetime.strptime(
+                    document_data['last_updated'], "%Y-%m-%d %H:%M:%S.%f")
+
+                st.write(f"Created at: {created_time}")
+                st.write(f"Last updated at: {last_updated_time}")
+
+                st.write("Messages in this thread:")
+                for message in document_data['messages']:
+                    message_time = datetime.strptime(
+                        message['time_value'], "%Y-%m-%d %H:%M:%S.%f")
+                    st.write(
+                        f"- {message['role']} ({message['time_state']} at {message_time}): {message['content']}")
+
+            except json.JSONDecodeError:
+                st.write(f"Document {idx + 1}: {doc}")
 
         # Option to query the selected collection
         st.subheader(f"Query the {selected_collection} Collection")
@@ -84,7 +109,8 @@ if collections:
         st.write(
             "- **0.5**: Moderate similarity, balance between precision and recall.")
         st.write(
-            "- **0.9**: Loose similarity, returns less relevant documents but broadens search scope.")
+            "- **0.9**: Loose similarity, returns less relevant docs but broadens search"
+        )
 
         if query:
             # Execute the query with distance threshold

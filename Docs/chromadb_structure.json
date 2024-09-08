@@ -1,0 +1,31 @@
+{
+    "id": "thread_123",
+    "messages": [
+        {
+            "role": "user",
+            "content": "Hello!",
+            "time_state": "Sent",
+            "time_value": "1631027600"
+        },
+        {
+            "role": "assistant",
+            "content": "Hi! How can I help?",
+            "time_state": "Received",
+            "time_value": "1631027620"
+        },
+        {
+            "role": "user",
+            "content": "What's the weather?",
+            "time_state": "Sent",
+            "time_value": "1631113940"
+        },
+        {
+            "role": "assistant",
+            "content": "It's sunny.",
+            "time_state": "Received",
+            "time_value": "1631114000"
+        }
+    ],
+    "created": "1631027600",
+    "last_updated": "1631114000"
+}
