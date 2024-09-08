@@ -32,17 +32,42 @@ document.getElementById('new-thread-btn').addEventListener('click', function() {
     startNewThread();
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+    loadSavedThreads();  // Load threads on page load
+});
+
+function loadSavedThreads() {
+    fetch('/get_threads', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        const threadsList = document.getElementById('threads-list');
+        threadsList.innerHTML = '';  // Clear placeholder threads
+        data.threads.forEach(threadId => {
+            const threadItem = document.createElement('li');
+            threadItem.innerText = `Thread ${threadId}`;
+            threadItem.addEventListener('click', () => loadThread(threadId));  // Load thread on click
+            threadsList.appendChild(threadItem);
+        });
+    })
+    .catch(err => console.log('Error loading threads:', err));
+}
+
+
 function startNewThread() {
-    // Clear the chat box
+    // Clear the chat box and initiate a new thread
     const chatBox = document.getElementById('chat-box');
     chatBox.innerHTML = '';
 
-    // Reset other elements or states if needed
-    // 1. Reset token usage display
+    // Clear the token usage and notify of new thread creation
     document.getElementById('token-usage').innerText = "Tokens used: 0";
-
-    // Perhaps log the event or notify the user
     console.log("New thread started!");
+
+    // Optionally, you can create a placeholder for the new thread here if needed
 }
 
 
@@ -73,6 +98,14 @@ function addMessageToChat(message, align) {
     chatBox.appendChild(messageDiv);
     chatBox.scrollTop = chatBox.scrollHeight;  // Auto-scroll to the bottom
 }
+
+
+function loadThread(threadId) {
+    console.log(`Loading thread: ${threadId}`);
+    // Here you would add logic to load the saved conversation from the backend
+    // This can be fetched from ChromaDB with the thread ID and displayed in the chat box
+}
+
 
 document.getElementById('theme-toggle').addEventListener('change', function () {
     if (this.checked) {
