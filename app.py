@@ -5,6 +5,7 @@ import time
 import uuid
 import chromadb
 import traceback
+import json
 
 app = Flask(__name__)
 
@@ -21,7 +22,8 @@ if not assistant_id:
 # Polling interval (seconds) to wait between run status checks
 POLL_INTERVAL = 2
 
-client = chromadb.Client()
+# Connect to a running ChromaDB server
+client = chromadb.HttpClient(host='localhost', port=8000)
 thread_collection = client.get_or_create_collection("mychat_threads")
 
 
@@ -81,26 +83,85 @@ def list_thread_messages(thread_id):
         return None
 
 
+# Retrieve all saved threads
+def get_all_threads():
+    try:
+        threads = thread_collection.get()  # Fetch all saved threads
+        # Return thread ids for sidebar
+        return [thread['id'] for thread in threads]
+    except Exception as e:
+        print(f"Error retrieving threads: {e}")
+        return []
+
+
+# Save thread after the first reply
+def save_thread_after_first_reply(thread_id, conversation):
+    try:
+        # Only save the thread if it's not already saved
+        # (e.g., based on thread_id existence check)
+        if not get_thread(thread_id):
+            save_thread(thread_id, conversation)
+            print(f"Thread {thread_id} saved after first reply.")
+    except Exception as e:
+        print(f"Error saving thread after first reply: {e}")
+
+
 # Save thread after Luna's first reply
 def save_thread(thread_id, messages):
-    # Ensure that both ids and documents are passed
-    thread_collection.add(
-        ids=[thread_id],  # Add the thread_id as the ID
-        documents=[{
-            "id": thread_id,
-            "messages": messages,
-            "last_updated": str(time.time())
-        }]
-    )
-    print(f"Thread {thread_id} saved.")
+    valid_messages = []
+
+    for message in messages:
+        if isinstance(message['content'], str):
+            valid_messages.append(message)
+        else:
+            message_content = extract_message_text(message)
+            if message_content:
+                valid_messages.append(
+                    {
+                        "role": message['role'], "content": message_content
+                    }
+                )
+
+    try:
+        # Debugging: Print what you're about to save
+        print(f"Saving thread with data: {
+            json.dumps(
+                {
+                    'id': thread_id,
+                    'messages': valid_messages,
+                    'last_updated': str(time.time())
+                }, indent=4
+            )}"
+        )
+        # Convert the valid_messages list into a JSON string before saving
+        thread_collection.add(
+            ids=[thread_id],
+            documents=[json.dumps({
+                "id": thread_id,
+                "messages": valid_messages,
+                "last_updated": str(time.time())
+            })]
+        )
+        print(f"Thread {thread_id} saved.")
+    except Exception as e:
+        print(f"Error saving thread: {e}")
 
 
 # Retrieve thread by ID
 def get_thread(thread_id):
-    result = thread_collection.get(id=thread_id)
-    if result:
-        return result[0]["messages"]
-    return []
+    try:
+        print(f"Thread collection data: {
+              json.dumps(thread_collection.get(), indent=4)}")
+        result = thread_collection.get()  # Fetch all saved threads
+        # ChromaDB returns documents in a specific format, adjust accordingly:
+        # assuming result['documents'] is the correct field
+        for thread in result['documents']:
+            if thread['id'] == thread_id:
+                return thread["messages"]
+        return []  # Return an empty list if the thread is not found
+    except Exception as e:
+        print(f"Error retrieving thread: {e}")
+        return []
 
 
 # Delete a thread
@@ -122,105 +183,140 @@ def chat():
         user_input = data.get('message')
         print(f"User input: {user_input}")
 
-        if not user_input:
+        if not validate_input(user_input):
             return jsonify({'error': 'No message provided'}), 400
 
-        # Create a unique thread ID
-        thread_id = str(uuid.uuid4())
+        # Check if it's a new thread or a continuation
+        # Get thread_id if continuing, else create a new one
+        thread_id = data.get('thread_id') or str(uuid.uuid4())
 
-        # Create a thread and run to chat with Luna
-        run = create_thread_and_run(user_input)
-
+        run = create_and_run_thread(user_input)
         if not run:
             return jsonify({'error': 'Failed to interact with assistant'}), 500
 
-        # Poll for the run's completion
-        completed_run = wait_for_run_completion(run.id, run.thread_id)
-
+        completed_run = wait_for_completion(run)
         if not completed_run:
             return jsonify({'error': 'Run did not complete successfully'}), 500
 
-        # List all messages in the thread
         messages = list_thread_messages(completed_run.thread_id)
-
         if not messages:
             return jsonify({'error': 'No messages found in thread'}), 500
 
-        # Filter to find the assistant's message and store the entire conversation
-        conversation = []
-        assistant_message = ""
+        assistant_message, conversation = process_messages(messages)
 
-        # Initialize block counter
-        i = 0
-
-        for message in messages:
-            message_text = ""
-            for block in message.content:
-                # Increment block counter
-                i += 1
-
-                # Log the block type and content for debugging purposes
-                print(f"Row {i}: Processing block: {block}")
-
-                # Safely access the 'text' and its 'value' attributes
-                # using object notation;
-                try:
-                    if hasattr(block, 'type') and block.type == "text":
-                        if hasattr(block, 'text') and hasattr(block.text, 'value'):
-                            # Extract the value from the text object
-                            text_value = block.text.value
-                            if isinstance(text_value, str):
-                                # Concatenate the valid text value
-                                message_text += text_value
-                            else:
-                                print(
-                                    f"Warning: Block's text value is not a string. "
-                                    f"Block details: {block}"
-                                )
-                        else:
-                            print(
-                                "Warning: Block missing 'text' or 'value' attribute. "
-                                "Block details: {}".format(block)
-                            )
-                    else:
-                        print(
-                            "Skipping non-text block or invalid block type."
-                            "Block details: {}".format(block)
-                        )
-                except Exception as e:
-                    # Print the line number along with the error message
-                    print(f"Error occurred on line {traceback.format_exc()}")
-                    return jsonify({'error': str(e)}), 500
-
-            # Append the message to the conversation if text was successfully extracted
-            if message_text.strip():  # Make sure it's not just whitespace
-                conversation.append(
-                    {"role": message.role, "content": message_text})
-
-            if message.role == "assistant":
-                assistant_message += message_text
-
-        # Save the entire conversation into ChromaDB
-        save_thread(thread_id, conversation)
+        # Save thread after first Luna response
+        save_thread_after_first_reply(thread_id, conversation)
 
         print("Assistant response:", assistant_message)
 
-        # Get token usage from the run
-        token_usage = completed_run.usage
-        tokens_used = f"Tokens used: {
-            token_usage.total_tokens}" if token_usage else "Tokens used: unknown"
+        token_usage = get_token_usage(completed_run)
 
-        return jsonify({
-            'response': assistant_message,
-            'tokens_used': tokens_used,
-            # Pass the thread ID back to the front-end for future interactions
-            'thread_id': thread_id
-        }), 200
+        return build_response(assistant_message, token_usage, thread_id)
 
     except Exception as e:
-        # Print the error and the line where it occurred
         print(f"Error occurred on line {traceback.format_exc()}")
         return jsonify({'error': str(e)}), 500
+
+
+@app.route('/get_threads', methods=['GET'])
+def get_threads():
+    """ API to get all saved threads """
+    threads = get_all_threads()
+    return jsonify({'threads': threads}), 200
+
+
+def validate_input(user_input):
+    """ Validate if the user input is present """
+    return bool(user_input)
+
+
+def create_and_run_thread(user_input):
+    """ Create a thread and start the run """
+    try:
+        return create_thread_and_run(user_input)
+    except Exception as e:
+        print(f"Failed to create thread: {e}")
+        return None
+
+
+def wait_for_completion(run):
+    """ Poll for the run's completion """
+    try:
+        return wait_for_run_completion(run.id, run.thread_id)
+    except Exception as e:
+        print(f"Failed to complete run: {e}")
+        return None
+
+
+def process_messages(messages):
+    """ Process messages and extract the assistant's response """
+    conversation = []
+    assistant_message = ""
+    for message in messages:
+        message_text = extract_message_text(message)
+        if message_text.strip():
+            conversation.append(
+                {"role": message.role, "content": message_text})
+        if message.role == "assistant":
+            assistant_message += message_text
+    return assistant_message, conversation
+
+
+def extract_message_text(message):
+    """ Extract text from message content blocks """
+    message_text = ""
+    i = 0  # Block counter
+    for block in message.content:
+        i += 1
+        print(f"Row {i}: Processing block: {block}")
+        message_text += process_block(block)
+    return message_text
+
+
+def process_block(block):
+    """ Safely process a block to extract text """
+    try:
+        if hasattr(block, 'type') and block.type == "text":
+            if hasattr(block, 'text') and hasattr(block.text, 'value'):
+                text_value = block.text.value
+                if isinstance(text_value, str):
+                    return text_value
+                else:
+                    print(
+                        f"Warning: Block's text value is not a string."
+                        f"Block details: {block}"
+                    )
+            else:
+                print(
+                    f"Warning: Block missing 'text' or 'value' attribute."
+                    f"Block details: {block}"
+                )
+        else:
+            print(
+                f"Skipping non-text block or invalid block type. Block details: {block}")
+        return ""
+
+    except Exception:
+        print(f"Error occurred on line {traceback.format_exc()}")
+        return ""
+
+
+def get_token_usage(completed_run):
+    """ Retrieve token usage information """
+    token_usage = completed_run.usage
+    return (
+        f"Tokens used: {token_usage.total_tokens}"
+        if token_usage else "Tokens used: unknown"
+    )
+
+
+def build_response(assistant_message, token_usage, thread_id):
+    """ Build the final response to return to the client """
+    return jsonify({
+        'response': assistant_message,
+        'tokens_used': token_usage,
+        'thread_id': thread_id
+    }), 200
 
 
 if __name__ == '__main__':
