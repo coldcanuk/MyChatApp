@@ -92,9 +92,18 @@ def list_thread_messages(thread_id):
 # Retrieve all saved threads
 def get_all_threads():
     try:
-        threads = thread_collection.get()  # Fetch all saved threads
-        # Return thread ids for sidebar
-        return [thread['id'] for thread in threads]
+        result = thread_collection.get()  # Fetch all saved threads
+        # Ensure 'documents' key exists and is iterable
+        if 'documents' in result and isinstance(result['documents'], list):
+            # Extract thread IDs from the documents, which are stored as JSON strings
+            threads = []
+            for document in result['documents']:
+                thread_data = json.loads(document)
+                threads.append(thread_data.get('id'))
+            return threads
+        else:
+            print("No valid threads found in ChromaDB.")
+            return []
     except Exception as e:
         print(f"Error retrieving threads: {e}")
         return []
@@ -116,7 +125,7 @@ def save_thread_after_first_reply(thread_id, conversation):
         print(f"Error saving thread after first reply: {e}")
 
 
-# Save thread with milliseconds
+# Save thread with full conversation, ensuring no truncation
 def save_thread(thread_id, new_messages, is_new_thread=False):
     try:
         if not new_messages or not isinstance(new_messages, list):
@@ -133,10 +142,11 @@ def save_thread(thread_id, new_messages, is_new_thread=False):
         if existing_thread:
             # Ensure existing thread has a valid structure
             if "messages" in existing_thread and isinstance(
-                existing_thread["messages"], list
+                    existing_thread["messages"], list
             ):
                 # Append new messages to the existing thread
                 existing_messages = existing_thread["messages"]
+
                 # Ensure each new message has time_state and time_value
                 for message in new_messages:
                     if "role" in message and "content" in message:
@@ -147,9 +157,10 @@ def save_thread(thread_id, new_messages, is_new_thread=False):
                         )
                         message.setdefault("time_value", current_time)
                         existing_messages.append(message)
+
                 updated_thread = {
                     "id": thread_id,
-                    "messages": existing_messages,
+                    "messages": existing_messages,  # Append new messages
                     # Keep original creation time
                     "created": existing_thread["created"],
                     # Update timestamp for the last interaction
@@ -164,7 +175,8 @@ def save_thread(thread_id, new_messages, is_new_thread=False):
             for message in new_messages:
                 if "role" in message and "content" in message:
                     message.setdefault(
-                        "time_state", "Sent" if message["role"] == "user" else "Received"
+                        "time_state", "Sent"
+                        if message["role"] == "user" else "Received"
                     )
                     message.setdefault("time_value", current_time)
 
@@ -288,12 +300,11 @@ def wait_for_completion(run):
         return None
 
 
-# Update the process_messages function to include milliseconds
+# Update the process_messages function to include all conversation elements
 def process_messages(messages):
     conversation = []
     assistant_message = ""
-    # Capture the time when Luna's reply is processed
-    current_time = get_current_timestamp()
+    current_time = get_current_timestamp()  # Capture the exact time
 
     for message in messages:
         message_text = extract_message_text(message)
@@ -303,10 +314,12 @@ def process_messages(messages):
                 "role": message.role,
                 "content": message_text,
                 "time_state": time_state,
-                "time_value": current_time
+                "time_value": current_time  # Use precise timestamp
             })
         if message.role == "assistant":
             assistant_message += message_text
+
+    # Return both the full conversation and the assistant's message
     return assistant_message, conversation
 
 

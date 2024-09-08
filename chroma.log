@@ -533,3 +533,272 @@
 [32mINFO[0m:     [08-09-2024 09:34:02] 127.0.0.1:59480 - "GET /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
 [32mINFO[0m:     [08-09-2024 09:34:02] 127.0.0.1:59480 - "GET /api/v1/collections/mychat_threads?tenant=default_tenant&database=default_database HTTP/1.1" 200
 [32mINFO[0m:     [08-09-2024 09:34:02] 127.0.0.1:59480 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:14:03] 127.0.0.1:54598 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:14:03] 127.0.0.1:54598 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 10:14:03] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 10:14:03] 127.0.0.1:54614 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:14:26] 127.0.0.1:46152 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:14:26] 127.0.0.1:46152 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 10:14:26] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 10:14:26] 127.0.0.1:46168 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:15:03] 127.0.0.1:57464 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:15:03] 127.0.0.1:57464 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 10:15:03] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 10:15:03] 127.0.0.1:57478 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:15:33] 127.0.0.1:45400 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:15:33] 127.0.0.1:45400 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 10:15:33] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 10:15:33] 127.0.0.1:45402 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:16:15] 127.0.0.1:48398 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:16:15] 127.0.0.1:48398 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:16:15] 127.0.0.1:48406 - "GET /api/v1/collections/mychat_threads?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:16:15] 127.0.0.1:48406 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:16:15] 127.0.0.1:48406 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/delete HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:16:25] Shutting down
+[32mINFO[0m:     [08-09-2024 10:16:25] Waiting for application shutdown.
+[36mDEBUG[0m:    [08-09-2024 10:16:25] Stopping component System
+[36mDEBUG[0m:    [08-09-2024 10:16:25] Stopping component SegmentAPI
+[36mDEBUG[0m:    [08-09-2024 10:16:25] Stopping component PersistentLocalHnswSegment
+[36mDEBUG[0m:    [08-09-2024 10:16:25] Stopping component LocalSegmentManager
+[36mDEBUG[0m:    [08-09-2024 10:16:25] Stopping component Posthog
+[36mDEBUG[0m:    [08-09-2024 10:16:25] Stopping component QuotaEnforcer
+[36mDEBUG[0m:    [08-09-2024 10:16:25] Stopping component SqliteDB
+[36mDEBUG[0m:    [08-09-2024 10:16:25] Stopping component OpenTelemetryClient
+[32mINFO[0m:     [08-09-2024 10:16:25] Application shutdown complete.
+[32mINFO[0m:     [08-09-2024 10:16:25] Finished server process [[36m180019[0m]
+[32mINFO[0m:     [08-09-2024 10:16:29] Set chroma_server_nofile to 65535
+[32mINFO[0m:     [08-09-2024 10:16:29] Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+[36mDEBUG[0m:    [08-09-2024 10:16:29] Starting component System
+[36mDEBUG[0m:    [08-09-2024 10:16:29] Starting component OpenTelemetryClient
+[36mDEBUG[0m:    [08-09-2024 10:16:29] Starting component SqliteDB
+[36mDEBUG[0m:    [08-09-2024 10:16:29] Starting component QuotaEnforcer
+[36mDEBUG[0m:    [08-09-2024 10:16:29] Starting component Posthog
+[36mDEBUG[0m:    [08-09-2024 10:16:29] Starting component LocalSegmentManager
+[36mDEBUG[0m:    [08-09-2024 10:16:29] Starting component SegmentAPI
+[32mINFO[0m:     [08-09-2024 10:16:29] Started server process [[36m187965[0m]
+[32mINFO[0m:     [08-09-2024 10:16:29] Waiting for application startup.
+[32mINFO[0m:     [08-09-2024 10:16:29] Application startup complete.
+[32mINFO[0m:     [08-09-2024 10:16:29] Uvicorn running on [1mhttp://localhost:8000[0m (Press CTRL+C to quit)
+[32mINFO[0m:     [08-09-2024 10:16:38] 127.0.0.1:40284 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:16:38] 127.0.0.1:40284 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 10:16:38] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 10:16:38] 127.0.0.1:40298 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:16:39] 127.0.0.1:40312 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:16:39] 127.0.0.1:40312 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 10:16:39] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 10:16:39] 127.0.0.1:40328 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:16:43] 127.0.0.1:40328 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:17:13] 127.0.0.1:53670 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:17:13] 127.0.0.1:53670 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:17:13] 127.0.0.1:53670 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:17:13] 127.0.0.1:53670 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:17:13] 127.0.0.1:53670 - "GET /api/v1/pre-flight-checks HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 10:17:13] Starting component PersistentLocalHnswSegment
+[32mINFO[0m:     [08-09-2024 10:17:13] 127.0.0.1:53670 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/add HTTP/1.1" 201
+[32mINFO[0m:     [08-09-2024 10:17:31] 127.0.0.1:43928 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:17:31] 127.0.0.1:43928 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:17:31] 127.0.0.1:43928 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:17:31] 127.0.0.1:43928 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:17:31] 127.0.0.1:43928 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/add HTTP/1.1" 201
+[32mINFO[0m:     [08-09-2024 10:18:11] 127.0.0.1:57406 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:18:11] 127.0.0.1:57406 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:18:11] 127.0.0.1:57406 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:18:11] 127.0.0.1:57406 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:18:11] 127.0.0.1:57406 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/add HTTP/1.1" 201
+[32mINFO[0m:     [08-09-2024 10:18:48] 127.0.0.1:51714 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:18:48] 127.0.0.1:51714 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:18:48] 127.0.0.1:51714 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:18:48] 127.0.0.1:51714 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:18:48] 127.0.0.1:51714 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/add HTTP/1.1" 201
+[32mINFO[0m:     [08-09-2024 10:19:07] 127.0.0.1:37618 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:19:07] 127.0.0.1:37618 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:19:07] 127.0.0.1:37618 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:19:07] 127.0.0.1:37618 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:19:07] 127.0.0.1:37618 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/add HTTP/1.1" 201
+[32mINFO[0m:     [08-09-2024 10:19:25] 127.0.0.1:48176 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:19:25] 127.0.0.1:48176 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:19:25] 127.0.0.1:48176 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:19:25] 127.0.0.1:48176 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:19:25] 127.0.0.1:48176 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/add HTTP/1.1" 201
+[32mINFO[0m:     [08-09-2024 10:19:34] 127.0.0.1:53286 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:19:34] 127.0.0.1:53286 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:19:34] 127.0.0.1:53286 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:19:34] 127.0.0.1:53286 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:19:34] 127.0.0.1:53286 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/add HTTP/1.1" 201
+[32mINFO[0m:     [08-09-2024 10:19:55] 127.0.0.1:37322 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:19:55] 127.0.0.1:37322 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:19:55] 127.0.0.1:37322 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:19:55] 127.0.0.1:37322 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:19:55] 127.0.0.1:37322 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/add HTTP/1.1" 201
+[32mINFO[0m:     [08-09-2024 10:20:12] 127.0.0.1:43972 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:20:12] 127.0.0.1:43972 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:20:12] 127.0.0.1:43972 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:20:12] 127.0.0.1:43972 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:20:12] 127.0.0.1:43972 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/add HTTP/1.1" 201
+[32mINFO[0m:     [08-09-2024 10:21:21] 127.0.0.1:37972 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:21:21] 127.0.0.1:37972 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:21:21] 127.0.0.1:37972 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:21:21] 127.0.0.1:37972 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:21:21] 127.0.0.1:37972 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/add HTTP/1.1" 201
+[32mINFO[0m:     [08-09-2024 10:21:55] 127.0.0.1:55108 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:21:55] 127.0.0.1:55108 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:21:55] 127.0.0.1:55108 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:21:55] 127.0.0.1:55108 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:21:55] 127.0.0.1:55108 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/add HTTP/1.1" 201
+[32mINFO[0m:     [08-09-2024 10:22:03] 127.0.0.1:57480 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:22:03] 127.0.0.1:57480 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:22:03] 127.0.0.1:57480 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:22:03] 127.0.0.1:57480 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:22:03] 127.0.0.1:57480 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/add HTTP/1.1" 201
+[32mINFO[0m:     [08-09-2024 10:22:54] 127.0.0.1:34594 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:22:54] 127.0.0.1:34594 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:22:54] 127.0.0.1:34594 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:22:54] 127.0.0.1:34594 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:22:54] 127.0.0.1:34594 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/add HTTP/1.1" 201
+[32mINFO[0m:     [08-09-2024 10:28:58] 127.0.0.1:48368 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:28:58] 127.0.0.1:48368 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:28:58] 127.0.0.1:48384 - "GET /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:28:58] 127.0.0.1:48384 - "GET /api/v1/collections/mychat_threads?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:28:58] 127.0.0.1:48384 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:56:05] 127.0.0.1:33566 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:56:05] 127.0.0.1:33566 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 10:56:05] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 10:56:05] 127.0.0.1:33570 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:56:05] 127.0.0.1:33574 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:56:05] 127.0.0.1:33574 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 10:56:05] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 10:56:05] 127.0.0.1:33578 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:56:09] 127.0.0.1:56052 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:56:09] 127.0.0.1:56052 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:56:09] 127.0.0.1:56062 - "GET /api/v1/collections/mychat_threads?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:56:09] 127.0.0.1:56062 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:56:09] 127.0.0.1:56062 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/delete HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:56:20] 127.0.0.1:56344 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:56:51] 127.0.0.1:45264 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:56:51] 127.0.0.1:45264 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:56:51] 127.0.0.1:45264 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:56:51] 127.0.0.1:45264 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:56:51] 127.0.0.1:45264 - "GET /api/v1/pre-flight-checks HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:56:51] 127.0.0.1:45264 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/add HTTP/1.1" 201
+[32mINFO[0m:     [08-09-2024 10:57:07] 127.0.0.1:56408 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:57:07] 127.0.0.1:56408 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:57:07] 127.0.0.1:56408 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:57:07] 127.0.0.1:56408 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:57:07] 127.0.0.1:56408 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/add HTTP/1.1" 201
+[32mINFO[0m:     [08-09-2024 10:57:27] 127.0.0.1:46534 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:57:27] 127.0.0.1:46534 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:57:27] 127.0.0.1:46534 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:57:27] 127.0.0.1:46534 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 10:57:27] 127.0.0.1:46534 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/add HTTP/1.1" 201
+[32mINFO[0m:     [08-09-2024 11:01:04] 127.0.0.1:55596 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:01:04] 127.0.0.1:55596 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:01:04] 127.0.0.1:55602 - "GET /api/v1/collections/mychat_threads?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:01:04] 127.0.0.1:55602 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:01:04] 127.0.0.1:55602 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/delete HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:01:08] 127.0.0.1:38378 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:01:08] 127.0.0.1:38378 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 11:01:08] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 11:01:08] 127.0.0.1:38386 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:01:09] 127.0.0.1:38398 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:01:09] 127.0.0.1:38398 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 11:01:09] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 11:01:09] 127.0.0.1:38400 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:01:11] 127.0.0.1:38400 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:01:20] 127.0.0.1:51742 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:01:20] 127.0.0.1:51742 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:01:20] 127.0.0.1:51742 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:01:20] 127.0.0.1:51742 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:01:20] 127.0.0.1:51742 - "GET /api/v1/pre-flight-checks HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:01:20] 127.0.0.1:51742 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/add HTTP/1.1" 201
+[32mINFO[0m:     [08-09-2024 11:01:39] 127.0.0.1:34832 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:01:39] 127.0.0.1:34832 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:02:07] 127.0.0.1:36408 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:02:07] 127.0.0.1:36408 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:02:16] 127.0.0.1:39764 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:02:16] 127.0.0.1:39764 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:02:41] 127.0.0.1:50464 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:02:41] 127.0.0.1:50464 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:03:04] 127.0.0.1:53858 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:03:04] 127.0.0.1:53858 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:03:25] 127.0.0.1:59566 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:03:25] 127.0.0.1:59566 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:03:25] 127.0.0.1:59570 - "GET /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:03:25] 127.0.0.1:59570 - "GET /api/v1/collections/mychat_threads?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:03:25] 127.0.0.1:59570 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:03:31] 127.0.0.1:53894 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:03:31] 127.0.0.1:53894 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:03:31] 127.0.0.1:53908 - "GET /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:03:31] 127.0.0.1:53908 - "GET /api/v1/collections/mychat_threads?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 11:03:31] 127.0.0.1:53908 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:05:40] 127.0.0.1:39388 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:05:40] 127.0.0.1:39388 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:05:40] 127.0.0.1:39400 - "GET /api/v1/collections/mychat_threads?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:05:40] 127.0.0.1:39400 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:05:40] 127.0.0.1:39400 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/delete HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:05:48] 127.0.0.1:53832 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:05:48] 127.0.0.1:53832 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 12:05:48] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 12:05:48] 127.0.0.1:53848 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:05:48] 127.0.0.1:53854 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:05:48] 127.0.0.1:53854 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 12:05:48] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 12:05:48] 127.0.0.1:53858 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:05:50] 127.0.0.1:53858 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:06:50] 127.0.0.1:33000 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:06:50] 127.0.0.1:33000 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:06:50] 127.0.0.1:33000 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:06:50] 127.0.0.1:33000 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:06:50] 127.0.0.1:33000 - "GET /api/v1/pre-flight-checks HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:06:50] 127.0.0.1:33000 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/add HTTP/1.1" 201
+[32mINFO[0m:     [08-09-2024 12:07:16] 127.0.0.1:39298 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:07:16] 127.0.0.1:39298 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:07:56] 127.0.0.1:41252 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:07:56] 127.0.0.1:41252 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:08:25] 127.0.0.1:48602 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:08:25] 127.0.0.1:48602 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:08:46] 127.0.0.1:55928 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:08:46] 127.0.0.1:55928 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:08:46] 127.0.0.1:55938 - "GET /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:08:46] 127.0.0.1:55938 - "GET /api/v1/collections/mychat_threads?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:08:46] 127.0.0.1:55938 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:16:43] 127.0.0.1:38310 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:16:43] 127.0.0.1:38310 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 12:16:43] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 12:16:43] 127.0.0.1:38316 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:16:43] 127.0.0.1:38318 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:16:43] 127.0.0.1:38318 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 12:16:43] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 12:16:43] 127.0.0.1:38320 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:16:49] 127.0.0.1:47628 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:16:58] 127.0.0.1:48298 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:16:58] 127.0.0.1:48298 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:16:58] 127.0.0.1:48304 - "GET /api/v1/collections/mychat_threads?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:16:58] 127.0.0.1:48304 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:16:58] 127.0.0.1:48304 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/delete HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:17:10] 127.0.0.1:41968 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:20:56] 127.0.0.1:41528 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:20:56] 127.0.0.1:41528 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 12:20:56] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 12:20:56] 127.0.0.1:41542 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:20:56] 127.0.0.1:39488 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:20:56] 127.0.0.1:39488 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[36mDEBUG[0m:    [08-09-2024 12:20:56] Collection mychat_threads already exists, returning existing collection.
+[32mINFO[0m:     [08-09-2024 12:20:56] 127.0.0.1:39496 - "POST /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:21:01] 127.0.0.1:39496 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:21:33] 127.0.0.1:40116 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:21:33] 127.0.0.1:40116 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:21:33] 127.0.0.1:40116 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:21:33] 127.0.0.1:40116 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:21:33] 127.0.0.1:40116 - "GET /api/v1/pre-flight-checks HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:21:33] 127.0.0.1:40116 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/add HTTP/1.1" 201
+[32mINFO[0m:     [08-09-2024 12:21:52] 127.0.0.1:57528 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:21:52] 127.0.0.1:57528 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:22:04] 127.0.0.1:54120 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:22:04] 127.0.0.1:54120 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:22:21] 127.0.0.1:33668 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:22:21] 127.0.0.1:33668 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:22:27] 127.0.0.1:35848 - "GET /api/v1/tenants/default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:22:27] 127.0.0.1:35848 - "GET /api/v1/databases/default_database?tenant=default_tenant HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:22:27] 127.0.0.1:35850 - "GET /api/v1/collections?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:22:27] 127.0.0.1:35850 - "GET /api/v1/collections/mychat_threads?tenant=default_tenant&database=default_database HTTP/1.1" 200
+[32mINFO[0m:     [08-09-2024 12:22:27] 127.0.0.1:35850 - "POST /api/v1/collections/8d8330c1-ca48-4006-b498-4551adc3c819/get HTTP/1.1" 200
