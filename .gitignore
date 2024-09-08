@@ -81,3 +81,4 @@ venv.bak/
 dmypy.json
 
 chroma.log
+chroma_data/
